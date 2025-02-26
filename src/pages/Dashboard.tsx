@@ -3,8 +3,8 @@ import Image3 from "../assets/college.jpg";
 import Image1 from "../assets/logo3.png";
 import Image4 from "../assets/prof.jpg";
 import Style from "../components/Dashboard.module.css";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
 
 const Dashboard = () => {
   return (

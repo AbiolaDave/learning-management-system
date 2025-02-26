@@ -1,9 +1,5 @@
-import React from 'react'
-
 const AllLecturer = () => {
-  return (
-    <div>AllLecturer</div>
-  )
-}
+  return <div>AllLecturer</div>;
+};
 
-export default AllLecturer
+export default AllLecturer;
