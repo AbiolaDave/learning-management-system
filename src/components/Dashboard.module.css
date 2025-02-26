@@ -1,0 +1,117 @@
+.nav {
+  top: 0;
+  z-index: 999;
+}
+.main {
+  margin-top: 100px;
+}
+.sty {
+  margin-top: 100px;
+  max-width: 470px;
+  line-height: 100px;
+}
+.easy {
+  line-height: 70px !important;
+}
+.ring {
+  border: 1px solid lightgray;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+}
+.eclipse {
+  border: 1px solid lightgray;
+  /* box-shadow: 2px 2px 2px 2px lightgray; */
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -215px;
+  margin-left: 190px;
+  background-image: url(../assets/logo2.png);
+  background-size: cover;
+  animation: rev 8s linear 1s infinite;
+}
+@keyframes rev {
+  0% {
+    transform: rotate(0deg) translate(200px);
+  }
+  100% {
+    transform: rotate(360deg) translate(200px);
+  }
+}
+.eclipse2 {
+  border: 1px solid lightgray;
+  /* box-shadow: 2px 2px 2px 2px lightgray; */
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -215px;
+  margin-left: 190px;
+  background-image: url(../assets/logo3.png);
+  background-size: cover;
+  animation: rev 8s linear 3s infinite;
+}
+.eclipse3 {
+  border: 1px solid lightgray;
+  /* box-shadow: 2px 2px 2px 2px lightgray; */
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -215px;
+  margin-left: 190px;
+  background-image: url(../assets/logo1.png);
+  background-size: cover;
+  animation: rev 8s linear 1s infinite reverse;
+}
+.eclipse4 {
+  border: 1px solid lightgray;
+  /* box-shadow: 2px 2px 2px 2px lightgray; */
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -215px;
+  margin-left: 190px;
+  background-image: url(../assets/logo4.png);
+  background-size: cover;
+  animation: rev 8s linear 3s infinite reverse;
+}
+.gridContainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 300px);
+  grid-template-rows: repeat(1, 500px);
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 70px;
+}
+
+.gridItems {
+}
+.gridItems img {
+  filter: grayscale(100%);
+  width: 100%;
+  height: 40%;
+}
+.gridItems h1 {
+  font-weight: bolder;
+  font-size: 21px;
+  margin-top: 30px;
+  height: 10%;
+  /* color: purple; */
+}
+.gridItems p {
+  margin-top: 15px;
+  font-weight: 700;
+  height: 30%;
+}
+.gridItems button{
+    font-weight: 600;
+}
+.gridItems button:hover {
+  text-decoration: underline;
+
+}
