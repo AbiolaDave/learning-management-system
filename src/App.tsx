@@ -1,11 +1,11 @@
 import AgoraChat from "agora-chat"; // ✅ Correct import
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-// import AgoraChatRoom from "./agora/agoraChat/AgoraChatRoom.jsx";
-// import AgoraCreateChat from "./agora/agoraChat/AgoraCreateChat.jsx";
-// import AgoraUser from "./agora/agoraChat/AgoraUser.jsx";
-// import PeerChat from "./agora/agoraChat/PeerChat.jsx";
-// import VideoCalling from "./agora/agoraVideoCall";
+import AgoraChatRoom from "./agora/agoraChat/AgoraChatRoom.jsx";
+import AgoraCreateChat from "./agora/agoraChat/AgoraCreateChat.jsx";
+import AgoraUser from "./agora/agoraChat/AgoraUser.jsx";
+import PeerChat from "./agora/agoraChat/PeerChat.jsx";
+import VideoCalling from "./agora/agoraVideoCall";
 import "./App.css";
 import SidebarItems from "./components/SidebarItems";
 import CreateSchool from "./pages/CreateSchool";
@@ -35,17 +35,17 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/registerschool" element={<CreateSchool />} />
         <Route path="/side" element={<SidebarItems />} />
-        {/* <Route path="/agora" element={<VideoCalling />} /> */}
-        {/* <Route path="/peer" element={<PeerChat />} /> */}
-        {/* <Route */}
-        {/* // path="/chat" */}
-        {/* // element={<AgoraChatRoom chatClient={chatClient} />} */}
-        {/* /> */}
-        {/* <Route path="/user" element={<AgoraUser chatClient={chatClient} />} /> */}
-        {/* <Route */}
-        {/* path="/create" */}
-        {/* element={<AgoraCreateChat chatClient={chatClient} />} */}
-        {/* /> */}
+        <Route path="/agora" element={<VideoCalling />} />
+        <Route path="/peer" element={<PeerChat />} />
+        <Route
+          path="/chat"
+          element={<AgoraChatRoom chatClient={chatClient} />}
+        />
+        <Route path="/user" element={<AgoraUser chatClient={chatClient} />} />
+        <Route
+          path="/create"
+          element={<AgoraCreateChat chatClient={chatClient} />}
+        />
       </Routes>
     </>
   );
