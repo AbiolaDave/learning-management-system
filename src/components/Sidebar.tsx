@@ -1,5 +1,5 @@
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import Logo from "../assets/logo1.png";
 
 const SidebarContext = createContext<any | null>(null);
@@ -67,10 +67,10 @@ export function SidebarItem({
 }: {
   icon: React.ReactNode;
   text: React.ReactNode;
-  active: React.ReactNode;
-  alert: React.ReactNode;
+  active: boolean;
+  alert?: boolean;
 }) {
-  const { expanded } = useContext(SidebarContext);
+  const { expanded } = useContext(SidebarContext) || { expanded: true };
 
   return (
     <li
