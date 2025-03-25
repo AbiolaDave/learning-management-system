@@ -1,12 +1,8 @@
-import React from "react";
+const AGORA_APP_ID = import.meta.env.VITE_AGORA_APP_ID;
+const AGORA_ORG_ID = import.meta.env.VITE_AGORA_ORG_ID;
+const AGORA_APP_TOKEN = import.meta.env.VITE_AGORA_TOKEN;
 
-const AGORA_APP_ID = "1514592";
-const AGORA_ORG_ID = "411313919";
-const AGORA_APP_TOKEN =
-  "007eJxTYJCdr3SL0yd5pS/fNdv4XwqMjTmtVTN8J3/YvmynnnxK4H8FhqSUNFMDM0vDZPPEVBNjM0MLQ7NUE6PkxFQDQ0vzVHPjokv30hsCGRlusk1lYmRgZWBkYGIA8RkYAC3jHOs=";
-  
-
-async function createAgoraUser(username) {
+async function createAgoraUser(username: string) {
   const url = `https://a41.chat.agora.io/${AGORA_ORG_ID}/${AGORA_APP_ID}/users`;
 
   const requestBody = {

@@ -1,16 +1,34 @@
-import AgoraChat from "agora-chat";
-import React, { useEffect, useState } from "react";
+import * as AgoraChat from "agora-chat";
+import { useEffect, useState } from "react";
 
-const AgoraChatRoom = ({ chatClient }) => {
-  const [roomId, setRoomId] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userToken, setUserToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [messageInput, setMessageInput] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [chatroomCreated, setChatroomCreated] = useState(false);
+interface AgoraCreateChatProps {
+  chatClient: any; // ✅ Use 'connection' (lowercase)
+}
+
+interface ChatMessage {
+  type: string;
+  msg: string;
+  from?: string;
+  to?: string;
+  chatType?: string;
+}
+
+const AgoraCreateChat: React.FC<AgoraCreateChatProps> = ({
+  chatClient,
+}: any) => {
+  const [roomId, setRoomId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+  const [userToken, setUserToken] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  // const [messages, setMessages] = useState<any>([]);
+  const [messageInput, setMessageInput] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [chatroomCreated, setChatroomCreated] = useState<boolean>(false);
+
+  console.log("Agora oooooooo joo oo", AgoraChat);
 
   // Function to log in the user
   const loginChatClient = async () => {
@@ -86,9 +104,9 @@ const AgoraChatRoom = ({ chatClient }) => {
   useEffect(() => {
     if (!chatClient || !isLoggedIn || !roomId) return;
 
-    const messageListener = (msg) => {
+    const messageListener = (msg: any) => {
       if (msg.chatType === "chatRoom" && msg.to === roomId) {
-        setMessages((prevMessages) => [...prevMessages, msg]);
+        setMessages((prevMessages: any) => [...prevMessages, msg]);
       }
     };
 
@@ -105,17 +123,17 @@ const AgoraChatRoom = ({ chatClient }) => {
   const sendMessage = async () => {
     if (!messageInput.trim() || !isLoggedIn || !roomId) return;
 
-    const messageData = {
+    const messageData: any = {
       type: "txt",
       msg: messageInput,
       to: roomId,
-      chatType: "chatRoom",
+      chatType: "chatRoom" as "chatRoom",
     };
 
     try {
-      const msg = AgoraChat.message.create(messageData);
+      const msg = chatClient?.message?.create(messageData);
       await chatClient.send(msg);
-      setMessages((prevMessages) => [...prevMessages, msg]);
+      setMessages((prevMessages: any) => [...prevMessages, msg]);
       setMessageInput("");
     } catch (error) {
       setError("Failed to send message.");
@@ -195,4 +213,4 @@ const AgoraChatRoom = ({ chatClient }) => {
   );
 };
 
-export default AgoraChatRoom;
+export default AgoraCreateChat;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const AgoraChatRoom = () => {
   const [chatroomId, setChatroomId] = useState(""); // Store the Chatroom ID
@@ -8,13 +8,10 @@ const AgoraChatRoom = () => {
   const [chatroomCreated, setChatroomCreated] = useState(false);
 
   const url = "https://a41.chat.agora.io/411313919/1514592/chatrooms";
-  const token =
-    "007eJxTYJCdr3SL0yd5pS/fNdv4XwqMjTmtVTN8J3/YvmynnnxK4H8FhqSUNFMDM0vDZPPEVBNjM0MLQ7NUE6PkxFQDQ0vzVHPjokv30hsCGRlusk1lYmRgZWBkYGIA8RkYAC3jHOs="; // Replace with the actual token
+  const token = import.meta.env.VITE_AGORA_KEY; // Replace with the actual token
 
   const createChatRoom = async () => {
-    const token =
-      "007eJxTYJCdr3SL0yd5pS/fNdv4XwqMjTmtVTN8J3/YvmynnnxK4H8FhqSUNFMDM0vDZPPEVBNjM0MLQ7NUE6PkxFQDQ0vzVHPjokv30hsCGRlusk1lYmRgZWBkYGIA8RkYAC3jHOs=";
-
+   
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -43,7 +40,7 @@ const AgoraChatRoom = () => {
       } else {
         console.error("Chatroom ID not found in response:", response.data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         "Error creating chatroom:",
         error.response ? error.response.data : error.message
@@ -52,10 +49,8 @@ const AgoraChatRoom = () => {
   };
 
   const deleteChatRoom = async () => {
-    const token =
-      "007eJxTYJCdr3SL0yd5pS/fNdv4XwqMjTmtVTN8J3/YvmynnnxK4H8FhqSUNFMDM0vDZPPEVBNjM0MLQ7NUE6PkxFQDQ0vzVHPjokv30hsCGRlusk1lYmRgZWBkYGIA8RkYAC3jHOs="; // Replace with your actual token
+   
 
-    // const chatroomId = "testchatroom1"; // Replace with the actual chatroom ID you want to delete
     const deleteUrl = `${url}/${chatroomId}`; // Append the chatroom ID to the URL
 
     const headers = {
@@ -66,7 +61,7 @@ const AgoraChatRoom = () => {
     try {
       const response = await axios.delete(deleteUrl, { headers }); // No body, just headers
       console.log("Chatroom deleted:", response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         "Error deleting chatroom:",
         error.response ? error.response.data : error.message
@@ -77,9 +72,7 @@ const AgoraChatRoom = () => {
   const url2 = `https://a41.chat.agora.io/411313919/1514592/chatrooms/${chatroomId}/users/${userId}`;
 
   const addUserToChatRoom = async () => {
-    const token =
-      "007eJxTYJCdr3SL0yd5pS/fNdv4XwqMjTmtVTN8J3/YvmynnnxK4H8FhqSUNFMDM0vDZPPEVBNjM0MLQ7NUE6PkxFQDQ0vzVHPjokv30hsCGRlusk1lYmRgZWBkYGIA8RkYAC3jHOs="; // Replace with the actual token
-
+    
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -89,7 +82,7 @@ const AgoraChatRoom = () => {
     try {
       const response = await axios.post(url2, {}, { headers });
       console.log("User added to chatroom:", response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         "Error adding user to chatroom:",
         error.response ? error.response.data : error.message
@@ -117,7 +110,7 @@ const AgoraChatRoom = () => {
       const response = await axios.delete(requestUrl, { headers });
       alert("Success! User removed from chatroom");
       console.log("User removed from chatroom:", response.data);
-    } catch (error) {
+    } catch (error: any) {
       alert("Error! Process error");
       console.error(
         "Error removing user from chatroom:",
@@ -135,7 +128,7 @@ const AgoraChatRoom = () => {
     console.log("Assigning Super Admin to:", chatroomId);
     console.log("Super Admin User:", superAdmin);
 
-    // const url = `https://a41.chat.agora.io/411313919/1514592/chatrooms/${chatroomId}/super_admin`;
+
     const url = `https://a41.chat.agora.io/411313919/1514592/chatrooms/super_admin`;
 
     const headers = {
@@ -150,54 +143,11 @@ const AgoraChatRoom = () => {
     try {
       const response = await axios.post(url, data, { headers });
       console.log("Super Admin assigned successfully:", response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         "Error assigning Super Admin:",
         error.response ? error.response.data : error.message
       );
-    }
-  };
-
-  useEffect(() => {
-    if (!chatClient) return;
-
-    // 🔹 Event listener for new messages
-    const messageListener = (msg) => {
-      console.log("New message received:", msg);
-      if (msg.chatType === "chatRoom" && msg.to === chatRoomId) {
-        setMessages((prevMessages) => [...prevMessages, msg]);
-      }
-    };
-
-    chatClient.addEventHandler("message", {
-      onTextMessage: messageListener, // Listen for text messages
-    });
-
-    return () => {
-      chatClient.removeEventHandler("message");
-    };
-  }, [chatClient, roomId]);
-
-  // 🔹 Function to send a message
-  const sendMessage = async () => {
-    if (!messageInput.trim()) return; // Prevent sending empty messages
-
-    const messageData = {
-      type: "txt",
-      msg: messageInput,
-      to: chatRoomId, // Send to the chatroom
-      chatType: "chatRoom",
-    };
-
-    try {
-      const msg = AgoraChat.message.create(messageData);
-      await chatClient.send(msg);
-      console.log("Message sent successfully:", msg);
-
-      setMessages((prevMessages) => [...prevMessages, msg]); // Add message locally
-      setMessageInput(""); // Clear input field
-    } catch (error) {
-      console.error("Error sending message:", error);
     }
   };
 
@@ -238,33 +188,7 @@ const AgoraChatRoom = () => {
         />
         <button onClick={assignSuperAdmin}>Assign Super Admin</button>
       </div>
-      {chatroomCreated ? (
-        <div>
-          <h2>Chat Room: {chatRoomId}</h2>
-          <div
-            style={{
-              height: "300px",
-              overflowY: "auto",
-              border: "1px solid #ccc",
-              padding: "10px",
-            }}
-          >
-            {messages.map((msg, index) => (
-              <p key={index}>
-                <strong>{msg.from}: </strong> {msg.msg}
-              </p>
-            ))}
-          </div>
-
-          <input
-            type="text"
-            value={messageInput}
-            onChange={(e) => setMessageInput(e.target.value)}
-            placeholder="Type a message..."
-          />
-          <button onClick={sendMessage}>Send</button>
-        </div>
-      ) : null}
+     
     </>
   );
 };
