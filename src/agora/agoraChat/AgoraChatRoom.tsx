@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AgoraChatRoom = () => {
   const [chatroomId, setChatroomId] = useState(""); // Store the Chatroom ID
   const [userId, setUserId] = useState(""); // Store the User ID
   const [superAdmin, setSuperAdmin] = useState(""); // Store the Super Admin User ID
-  const [chatroomCreated, setChatroomCreated] = useState(false);
+  // const [chatroomCreated, setChatroomCreated] = useState(false);
 
   const url = "https://a41.chat.agora.io/411313919/1514592/chatrooms";
   const token = import.meta.env.VITE_AGORA_KEY; // Replace with the actual token
 
   const createChatRoom = async () => {
-   
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -34,7 +33,7 @@ const AgoraChatRoom = () => {
 
       if (chatroomId) {
         setChatroomId(chatroomId);
-        setChatroomCreated(true);
+        // setChatroomCreated(true);
         console.log("Chatroom created:", response.data);
         console.log("Chatroom ID:", chatroomId); // ✅ Now this should log the correct ID
       } else {
@@ -49,8 +48,6 @@ const AgoraChatRoom = () => {
   };
 
   const deleteChatRoom = async () => {
-   
-
     const deleteUrl = `${url}/${chatroomId}`; // Append the chatroom ID to the URL
 
     const headers = {
@@ -72,7 +69,6 @@ const AgoraChatRoom = () => {
   const url2 = `https://a41.chat.agora.io/411313919/1514592/chatrooms/${chatroomId}/users/${userId}`;
 
   const addUserToChatRoom = async () => {
-    
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -127,7 +123,6 @@ const AgoraChatRoom = () => {
 
     console.log("Assigning Super Admin to:", chatroomId);
     console.log("Super Admin User:", superAdmin);
-
 
     const url = `https://a41.chat.agora.io/411313919/1514592/chatrooms/super_admin`;
 
@@ -188,7 +183,6 @@ const AgoraChatRoom = () => {
         />
         <button onClick={assignSuperAdmin}>Assign Super Admin</button>
       </div>
-     
     </>
   );
 };

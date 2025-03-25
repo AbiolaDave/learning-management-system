@@ -4,7 +4,7 @@ import { IMessage } from "../../types/chat";
 import { ChatBubble } from "./ChatBubble";
 import { ChatInput } from "./ChatInput";
 
-export const Chat: React.FC<{ message?: IMessage }> = ({ message }) => {
+export const Chat: React.FC<{ message?: IMessage }> = () => {
   const { chat } = useContext(RoomContext);
 
   return (

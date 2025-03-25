@@ -26,7 +26,7 @@ const AgoraCreateChat: React.FC<AgoraCreateChatProps> = ({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [chatroomCreated, setChatroomCreated] = useState<boolean>(false);
+  // const [chatroomCreated, setChatroomCreated] = useState<boolean>(false);
 
   console.log("Agora oooooooo joo oo", AgoraChat);
 
@@ -69,7 +69,7 @@ const AgoraCreateChat: React.FC<AgoraCreateChatProps> = ({
       const response = await chatClient.createChatRoom(options);
       console.log("Chat Room Created:", response);
       setRoomId(response.data.id);
-      setChatroomCreated(true);
+      // setChatroomCreated(true);
     } catch (err) {
       console.error("Error Creating Chat Room:", err);
       setError("Failed to create chat room.");

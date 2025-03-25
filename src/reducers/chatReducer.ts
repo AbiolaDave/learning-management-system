@@ -1,9 +1,8 @@
 import { IMessage } from "../types/chat";
 import { ADD_HISTORY, ADD_MESSAGE } from "./chatActions";
-import { ADD_PEER, REMOVE_PEER } from "./peerActions";
 
 export type ChatState = {
-    messages: IMessage[]
+  messages: IMessage[];
 };
 type ChatAction =
   | {
@@ -19,17 +18,17 @@ export const chatsReducer = (state: ChatState, action: ChatAction) => {
   console.log("Reducer Action Received:", action); // Debug log
   switch (action.type) {
     case ADD_MESSAGE:
-    //   console.log("Adding Peer:", action.payload.peerId); // Debug log
+      //   console.log("Adding Peer:", action.payload.peerId); // Debug log
       return {
         ...state,
-        messages: [...state.messages, action.payload.message]
+        messages: [...state.messages, action.payload.message],
       };
     case ADD_HISTORY:
-    //   console.log("Removing Peer:", action.payload.peerId); // Debug log
-      return{
+      //   console.log("Removing Peer:", action.payload.peerId); // Debug log
+      return {
         ...state,
-        messages: action.payload.history
-      }
+        messages: action.payload.history,
+      };
 
     default:
       return { ...state };
