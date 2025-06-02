@@ -5,7 +5,7 @@ import { useAuth } from "../../../../context/Auth/AuthContext";
 
 const StaffCourse = () => {
   const { adminData } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState<
     {
@@ -52,7 +52,6 @@ const StaffCourse = () => {
   };
 
   const editDetails = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
 
   if (loading) {
     return (
@@ -96,7 +95,6 @@ const StaffCourse = () => {
           </div>
         ))}
 
-
         <div className="flex flex-col p-6 sm:p-8 border border-gray-400 rounded-md shadow shadow-slate-300 w-full">
           <Edit
             onClick={editDetails}
@@ -121,7 +119,6 @@ const StaffCourse = () => {
           </div>
         </div>
 
-      
         <div className="flex flex-col p-6 sm:p-8 border border-gray-400 rounded-md shadow shadow-slate-300 w-full">
           <Edit
             onClick={editDetails}

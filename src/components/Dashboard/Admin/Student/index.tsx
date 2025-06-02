@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../context/Auth/AuthContext";
 import StudentDetails from "./StudentDetails";
 import StudentModal from "./StudentModal";
 
@@ -24,7 +23,6 @@ const StudentList = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
-  const { adminData } = useAuth();
   const email = localStorage.getItem("AdminEmail");
   const role = localStorage.getItem("AdminRole");
   const school = localStorage.getItem("AdminSchool");
@@ -35,9 +33,12 @@ const StudentList = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/students/all`, {
-        params: { email, role, school },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/students/all`,
+        {
+          params: { email, role, school },
+        }
+      );
       if (response.status === 200) {
         setStudents(response.data.data);
       } else {
@@ -63,7 +64,6 @@ const StudentList = () => {
 
   return (
     <div className="w-full px-2 md:px-8">
- 
       <div className="flex justify-end mt-6 sm:mt-10">
         <button
           onClick={openModal}
@@ -73,15 +73,12 @@ const StudentList = () => {
           <span className="hidden sm:inline">Add Student</span>
         </button>
       </div>
-
-\
+      \
       <div className="mt-6 sm:mt-10">
         <h1 className="text-xl sm:text-2xl text-center text-blue-500 font-bold mb-4">
           List of Students
         </h1>
       </div>
-
-
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="min-w-[600px] text-blue-500 w-full border border-collapse text-sm sm:text-base">
           <thead className="bg-blue-50">
@@ -112,8 +109,6 @@ const StudentList = () => {
           </tbody>
         </table>
       </div>
-
-     
       <div className="block md:hidden space-y-4 mt-4">
         {students.map((student, index) => (
           <div
@@ -140,8 +135,6 @@ const StudentList = () => {
           </div>
         ))}
       </div>
-
-
       <StudentDetails
         detailsOpen={detailsOpen}
         onDetailsClose={closeDetailsModal}

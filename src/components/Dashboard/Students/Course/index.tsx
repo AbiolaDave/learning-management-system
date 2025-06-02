@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../context/Auth/AuthContext";
 import SelectCourseModal from "./SelectCourseModal";
 
 interface Course {
@@ -11,12 +10,10 @@ interface Course {
   lecturer: string;
 }
 
-
 const StudentCourseComp = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [courses, setCourses] = useState<Course[]>([]);
 
-  const { adminData } = useAuth();
   const email = localStorage.getItem("AdminEmail");
   const role = localStorage.getItem("AdminRole");
 
@@ -68,7 +65,6 @@ const StudentCourseComp = () => {
 
   return (
     <div className="w-full px-2 md:px-8">
-    
       <div className="flex justify-end mt-6 sm:mt-10">
         <button
           onClick={() => setIsOpen(true)}
@@ -79,14 +75,12 @@ const StudentCourseComp = () => {
         </button>
       </div>
 
-    
       <div className="mt-6 sm:mt-10">
         <h1 className="text-xl sm:text-2xl text-center text-blue-500 font-bold mb-4">
           Registered Courses
         </h1>
       </div>
 
-     
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="min-w-[600px] text-blue-500 w-full border border-collapse text-sm sm:text-base">
           <thead>
@@ -118,7 +112,6 @@ const StudentCourseComp = () => {
         </table>
       </div>
 
-      
       <div className="block md:hidden space-y-4 mt-4">
         {courses.map((course, index) => (
           <div
@@ -145,7 +138,6 @@ const StudentCourseComp = () => {
         ))}
       </div>
 
-    
       <SelectCourseModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

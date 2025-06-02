@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../context/Auth/AuthContext";
 import StaffDetails from "./StaffDetails";
 import StaffModal from "./StaffModal";
 
@@ -17,7 +16,6 @@ const StaffList = () => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [staffs, setStaff] = useState<Staff[]>([]);
 
-  const { adminData } = useAuth();
   let email = localStorage.getItem("AdminEmail");
   let role = localStorage.getItem("AdminRole");
   let school = localStorage.getItem("AdminSchool");
@@ -33,21 +31,22 @@ const StaffList = () => {
     setDetailsOpen(false);
   };
 
-  const payload = { email, role };
-
   useEffect(() => {
     fetchStaff();
   }, []);
 
   const fetchStaff = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/staff/all`, {
-        params: {
-          email,
-          role,
-          school,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/staff/all`,
+        {
+          params: {
+            email,
+            role,
+            school,
+          },
+        }
+      );
       if (response.status === 200) {
         setStaff(response.data.data);
         console.log(response.data.data);
@@ -61,8 +60,6 @@ const StaffList = () => {
 
   const editDetails = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-
-  const onDetailsClose = () => setDetailsOpen(false);
 
   return (
     <div className="w-full px-2 md:px-8">
@@ -110,7 +107,6 @@ const StaffList = () => {
           </tbody>
         </table>
       </div>
-
 
       <div className="block md:hidden space-y-4 mt-4">
         {staffs.map((staff, index) => (

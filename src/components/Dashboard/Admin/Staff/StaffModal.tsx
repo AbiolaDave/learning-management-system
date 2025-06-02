@@ -9,7 +9,7 @@ interface EditModalProps {
 }
 
 const StaffModal: React.FC<EditModalProps> = ({ isOpen, onClose }) => {
-  const { adminData, setAdminData } = useAuth();
+  const { adminData, } = useAuth();
 
   const readAsBase64 = (file: File) => {
     return new Promise<string>((resolve, reject) => {

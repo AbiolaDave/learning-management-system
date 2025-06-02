@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../context/Auth/AuthContext";
 import NewCourseModal from "./NewCourseModal";
 
 interface Course {
@@ -15,10 +14,8 @@ const CoursesComp = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [courses, setCourses] = useState<Course[]>([]);
 
-  const { adminData } = useAuth();
   let email = localStorage.getItem("AdminEmail");
   let role = localStorage.getItem("AdminRole");
-  const payload = { email, role };
 
   useEffect(() => {
     fetchCourses();
@@ -26,12 +23,15 @@ const CoursesComp = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/courses/all`, {
-        params: {
-          email,
-          role,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/courses/all`,
+        {
+          params: {
+            email,
+            role,
+          },
+        }
+      );
       if (response.status === 200) {
         setCourses(response.data.data);
         console.log(response.data.data);
@@ -65,7 +65,6 @@ const CoursesComp = () => {
         </h1>
       </div>
 
-    
       <div className="hidden md:block w-full overflow-x-auto">
         <table className="min-w-[600px] text-blue-500 w-full border border-collapse text-sm sm:text-base">
           <thead>

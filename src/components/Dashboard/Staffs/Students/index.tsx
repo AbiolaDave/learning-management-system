@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../context/Auth/AuthContext";
 import StudentDetails from "../../Admin/Student/StudentDetails";
 
 interface Student {
@@ -11,10 +10,9 @@ interface Student {
 }
 
 const StaffStudents = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [staffs, setStaff] = useState<Student[]>([]);
   const [detailsOpen, setDetailsOpen] = useState(false);
-  const [students, setStudents] = useState<Student[]>([]);
+
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   const openDetails = (student: Student) => {
@@ -27,11 +25,9 @@ const StaffStudents = () => {
     setSelectedStudent(null);
   };
 
-  const { adminData } = useAuth();
   let email = localStorage.getItem("AdminEmail");
   let role = localStorage.getItem("AdminRole");
   let school = localStorage.getItem("AdminSchool");
-  const payload = { email, role };
 
   useEffect(() => {
     fetchStaff();
@@ -59,9 +55,6 @@ const StaffStudents = () => {
       console.log(error);
     }
   };
-
-  const editDetails = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
 
   return (
     <div className="w-full overflow-x-auto">

@@ -10,7 +10,7 @@ const SignUpComponent = () => {
   let navigate = useNavigate();
 
   const [next, setNext] = useState<Boolean>(false);
-  const [prev, setPrev] = useState<Boolean>(false);
+ 
 
   let url = `${import.meta.env.VITE_API_URL}/admin/auth/signup`;
 
@@ -165,7 +165,7 @@ const SignUpComponent = () => {
                 type="button"
                 onClick={() => {
                   setNext(true);
-                  setPrev(true);
+                  // setPrev(true);
                 }}
                 className="px-6 flex float-end bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
               >
@@ -334,7 +334,7 @@ const SignUpComponent = () => {
                   type="button"
                   onClick={() => {
                     setNext(false);
-                    setPrev(false);
+                   
                   }}
                   className="px-6 flex float-start bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                 >
