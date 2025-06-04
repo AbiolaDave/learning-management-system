@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Image2 from "../../assets/certificate.jpg";
 import Image3 from "../../assets/college.jpg";
 import Image1 from "../../assets/logo3.png";
@@ -27,13 +28,15 @@ const Home = () => {
             A friendly environment for teachers and students to interact online
           </p>
           <div>
-            <button
-              className="text-white font-bold bg-blue-700 hover:bg-blue-800 focus:ring-4
-        focus:outline-none focus:ring-blue-300 rounded-lg text-lg px-4 py-3 dark:bg-blue-600
-        dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              <p className="font-bold">Get Started</p>
-            </button>
+            <Link to={`/signup`}>
+              <button
+                className="text-white font-bold bg-blue-700 hover:bg-blue-800 focus:ring-4
+              focus:outline-none focus:ring-blue-300 rounded-lg text-lg px-4 py-3 dark:bg-blue-600
+              dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <p className="font-bold">Get Started</p>
+              </button>
+            </Link>
           </div>
         </div>
         <div className="mt-10 sm:mt-20">
@@ -69,9 +72,11 @@ const Home = () => {
                 their lessons, create and share assignments, track students'
                 progress, and provide feedback.
               </p>
-              <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
-                Learn More
-              </button>
+              <Link to={"/about"}>
+                <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
+                  Learn More
+                </button>
+              </Link>
             </div>
 
             <div className="max-w-xs text-center">
@@ -88,9 +93,11 @@ const Home = () => {
                 Teachers can grant students access to course materials directly
                 on the platform.
               </p>
-              <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
-                Learn More
-              </button>
+              <Link to={"/about"}>
+                <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
+                  Learn More
+                </button>
+              </Link>
             </div>
 
             <div className="max-w-xs text-center">
@@ -107,9 +114,11 @@ const Home = () => {
                 experience. Students can access course materials and assignments
                 from any device and easily communicate with classmates.
               </p>
-              <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
-                Learn More
-              </button>
+              <Link to={"/about"}>
+                <button className="mt-4 text-blue-500 font-bold bg-transparent rounded-lg text-lg px-4 py-3 hover:underline focus:outline-none">
+                  Learn More
+                </button>
+              </Link>
             </div>
           </div>
         </div>
