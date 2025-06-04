@@ -1,6 +1,6 @@
 import AgoraChat from "agora-chat";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Dashboard from "./components/Landing Page/Home";
@@ -9,6 +9,7 @@ import SidebarItems from "./components/SidebarItems";
 import SignUp from "./components/SignUP/SignUp";
 import CreateSchool from "./pages/CreateSchool";
 import About from "./shared/About/About";
+import Services from "./shared/Services/Services";
 
 // ✅ Correct way to create an Agora Chat client
 const chatClient = new AgoraChat.connection({
@@ -36,6 +37,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
