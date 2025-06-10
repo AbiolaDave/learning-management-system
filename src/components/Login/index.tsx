@@ -21,7 +21,7 @@ const LoginComponent = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      setLoading(true)
+      setLoading(true);
       console.log(values, "Form Values");
       await axios
         .post(url, values)
@@ -49,7 +49,7 @@ const LoginComponent = () => {
           setDisabled(false);
           console.error("There was an error!", error);
         });
-    }, 
+    },
     validationSchema: yup.object({
       email: yup
         .string()
@@ -115,7 +115,6 @@ const LoginComponent = () => {
           <button
             type="submit"
             disabled={disabled}
-            onClick={() => setDisabled(true)}
             className="px-6 w-full md:w-auto bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
             Login

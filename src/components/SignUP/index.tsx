@@ -354,7 +354,6 @@ const SignUpComponent = () => {
                 <button
                   type="submit"
                   disabled={disabled}
-                  onClick={() => setDisabled(true)}
                   className="px-6 flex float-end bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                 >
                   Sign Up
