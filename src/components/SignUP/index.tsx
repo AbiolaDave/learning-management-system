@@ -8,9 +8,11 @@ import image from "../../assets/ChatGPT Image May 21, 2025, 06_35_58 PM.png";
 
 const SignUpComponent = () => {
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
 
   const [next, setNext] = useState<Boolean>(false);
- 
 
   let url = `${import.meta.env.VITE_API_URL}/admin/auth/signup`;
 
@@ -72,6 +74,8 @@ const SignUpComponent = () => {
           }
         })
         .catch((error) => {
+          alert("There was an error signing up. Please try again.");
+          setDisabled(false);
           console.error("There was an error!", error);
         });
     },
@@ -332,9 +336,9 @@ const SignUpComponent = () => {
               <div className="flex justify-between gap-4">
                 <button
                   type="button"
+                  disabled={disabled}
                   onClick={() => {
                     setNext(false);
-                   
                   }}
                   className="px-6 flex float-start bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                 >
@@ -342,10 +346,23 @@ const SignUpComponent = () => {
                 </button>
                 <button
                   type="submit"
+                  disabled={disabled}
+                  onClick={() => setDisabled(true)}
                   className="px-6 flex float-end bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                 >
                   Sign Up
                 </button>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">
+                  Already have an account?{" "}
+                  <a
+                    href="/login"
+                    className="text-blue-600 hover:underline font-semibold"
+                  >
+                    Login
+                  </a>
+                </p>
               </div>
             </>
           )}
