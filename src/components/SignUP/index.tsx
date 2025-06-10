@@ -11,7 +11,6 @@ const SignUpComponent = () => {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-
   const [next, setNext] = useState<Boolean>(false);
 
   let url = `${import.meta.env.VITE_API_URL}/admin/auth/signup`;
@@ -42,6 +41,7 @@ const SignUpComponent = () => {
       profilePicture: "",
     },
     onSubmit: async (values) => {
+      setLoading(true);
       console.log(values.profilePicture);
       if (values.profilePicture) {
         values.profilePicture = await readAsBase64(
@@ -332,6 +332,13 @@ const SignUpComponent = () => {
                       className="w-20 h-20 mt-2 object-cover rounded-full"
                     />
                   )}
+              </div>
+              <div>
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                  </div>
+                ) : null}
               </div>
               <div className="flex justify-between gap-4">
                 <button

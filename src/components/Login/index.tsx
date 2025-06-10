@@ -21,6 +21,7 @@ const LoginComponent = () => {
       password: "",
     },
     onSubmit: async (values) => {
+      setLoading(true)
       console.log(values, "Form Values");
       await axios
         .post(url, values)
@@ -48,7 +49,7 @@ const LoginComponent = () => {
           setDisabled(false);
           console.error("There was an error!", error);
         });
-    },
+    }, 
     validationSchema: yup.object({
       email: yup
         .string()
